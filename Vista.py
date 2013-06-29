@@ -40,6 +40,7 @@ class GUI:
 			cbRefs[cb] = IntVar();
 			checkBox[cb] = Checkbutton(self.ui, text=cb, var=cbRefs[cb]);
 			checkBox[cb].pack();
+		checkBox["Aval"].toggle();
 	def boton(self):
 		"""Accion de pulsado de boton"""
 		try:
