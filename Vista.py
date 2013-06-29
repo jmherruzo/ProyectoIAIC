@@ -1,8 +1,17 @@
+'''
+Created on 28/06/2013
+
+@author: Fernando Cobo Aguilera
+@author: Antonio Cubero Fernandez
+@author: Jose Manuel Herruzo Ruiz
+'''
+
 from Tkinter import Label, Entry, Checkbutton, Tk, Button, IntVar
 from Tkinter import *
 from Controlador import Controlador
 import tkMessageBox
 import exceptions
+import Data
 
 campos = {"Cuantia":0, "Edad":1, "Duracion":2, "Ahorros":3, "Nomina":4};
 checkBox = {"Trabajo Estable":0, "Aval":1, "Interes variable":2};
@@ -53,7 +62,7 @@ def main():
 	a.setBoton(b);
 	a.initGUI();
 	b.pack()
+	print Data.euribor;
 	root.mainloop()  
-
 if __name__ == '__main__':
 	main()  
