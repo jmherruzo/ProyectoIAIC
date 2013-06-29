@@ -17,22 +17,29 @@ class Controlador:
             aux = True;
             if self.campos["Ahorros"] < self.campos["Cuantia"]*nivel["ahorros"]:
                 aux = False
+                self.motivo = "Ahorros insuficientes"
             elif self.campos["Edad"]+self.campos["Duracion"]>nivel["edad"]:
                 aux = False
+                self.motivo = "La edad sumada a la duracion del prestamo supera el limite"
             elif self.campos["Duracion"]>nivel["duracion"]:
                 aux=False;
+                self.motivo = "La duracion supera el limite"
             elif self.campos["Trabajo Estable"]<nivel["trabajo"]:
                 aux=False;
+                self.motivo = "Es necesario un trabajo estable"
             elif self.campos["Aval"] < nivel["aval"]:
                 aux=False;
+                self.motivo = "Es necesario un aval"
             elif self.campos["Edad"] < nivel["edad_min"]:
                 aux=False;
+                self.motivo = "Son necesarios al menos 18 anyos para la concesion del prestamo"
             
             if aux==True:
                 self.mensualidad = ModeloAplicacion.calcularMensualidad(self.campos["Cuantia"], nivel["interes_fijo"], self.campos["Duracion"]);
-                if self.campos["Nomina"] < self.mensualidad*nivel["nomina"]:
+                if self.campos["Nomina"]*nivel["nomina"] < self.mensualidad:
                     aux = False;     
-            
+                    self.motivo = "Nomina insuficiente"
+                
             self.resultados.append(aux);
             
         concesion = False;
@@ -40,6 +47,7 @@ class Controlador:
             if result:
                 concesion = True;
                 break;
+            
                 
         return concesion;
             
@@ -53,3 +61,6 @@ class Controlador:
                     return self.datos[i]["interes_fijo"];
     def getMensualidad(self):
         return self.mensualidad;
+    
+    def getMotivo(self):
+        return self.motivo;

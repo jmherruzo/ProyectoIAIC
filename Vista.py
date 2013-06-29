@@ -17,6 +17,9 @@ checkBox = {"Trabajo Estable":0, "Aval":1, "Interes variable":2};
 cbRefs = {"Trabajo Estable":0, "Aval":1, "Interes variable":2}
 valores = {"Cuantia":0, "Edad":1, "Duracion":2, "Ahorros":3, "Nomina":4, "Trabajo Estable":5, "Aval":6, "Interes variable":7};
 
+def mensaje(msg):
+	tkMessageBox.showinfo(msg)
+
 class GUI:
 	def __init__(self, tk):
 		self.ui = tk;
@@ -46,7 +49,7 @@ class GUI:
 				tkMessageBox.showinfo("Enhorabuena", "Su prestamo ha sido concedido con un interes del "+ interes + "%" +"\n"
 									+"Mensualidad: " + str(self.ctrl.getMensualidad()) + "Euros")
 			else:
-				tkMessageBox.showinfo("Lo sentimos", "Su prestamo ha sido denegado")
+				tkMessageBox.showinfo("Lo sentimos", "Su prestamo ha sido denegado \n Motivo: " + self.ctrl.getMotivo())
 
 		except exceptions.ValueError:
 			tkMessageBox.showinfo("Error", "Algun campo esta vacio o es de un tipo erroneo")
