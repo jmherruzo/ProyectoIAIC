@@ -47,7 +47,7 @@ class GUI:
 				valores[campo] = int(campos[campo].get());
 			for cb in checkBox:
 				valores[cb] = cbRefs[cb].get();
-			concedido = self.ctrl.procesar(valores, self.ui);
+			concedido = self.ctrl.procesar(valores);
 			if concedido: #Prestamo concedido
 				interes = str(self.ctrl.getInteres());
 				tkMessageBox.showinfo("Enhorabuena", "Su prestamo ha sido concedido con un interes del "+ interes + "%" +"\n"
