@@ -11,7 +11,6 @@ from Tkinter import *
 from Controlador import Controlador
 import tkMessageBox
 import exceptions
-import Data
 
 campos = {"Cuantia":0, "Edad":1, "Duracion":2, "Ahorros":3, "Nomina":4};
 checkBox = {"Trabajo Estable":0, "Aval":1, "Interes variable":2};
@@ -41,10 +40,11 @@ class GUI:
 				valores[campo] = int(campos[campo].get());
 			for cb in checkBox:
 				valores[cb] = cbRefs[cb].get();
-			self.ctrl.procesar(valores, self.ui);
-			if self.ctrl.concedido():
+			concedido = self.ctrl.procesar(valores, self.ui);
+			if concedido:
 				interes = str(self.ctrl.getInteres());
-				tkMessageBox.showinfo("Enhorabuena", "Su prestamo ha sido concedido con un interes del "+ interes + "%")
+				tkMessageBox.showinfo("Enhorabuena", "Su prestamo ha sido concedido con un interes del "+ interes + "%" +"\n"
+									+"Mensualidad: " + str(self.ctrl.getMensualidad()) + "Euros")
 			else:
 				tkMessageBox.showinfo("Lo sentimos", "Su prestamo ha sido denegado")
 
@@ -62,7 +62,6 @@ def main():
 	a.setBoton(b);
 	a.initGUI();
 	b.pack()
-	print Data.euribor;
 	root.mainloop()  
 if __name__ == '__main__':
 	main()  
