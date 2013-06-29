@@ -1,4 +1,6 @@
 '''
+Subsistema de Controlador, se encarga de controlar y procesar las peticiones de los usuarios
+
 Created on 28/06/2013
 
 @author: Fernando Cobo Aguilera
@@ -8,9 +10,11 @@ Created on 28/06/2013
 import ModeloAplicacion
 
 class Controlador:
-    def procesar(self, valores, gui):
+    """Clase encargada de procesar una peticion y devolver su resultado"""
+    def procesar(self, valores):
+        """Procesa una peticion y devuelve un valor boolean
+        @param valores - Valores introducidos por el cliente"""
         self.campos = valores;
-        self.ui = gui;
         self.datos = ModeloAplicacion.getData();
         self.resultados = []
         for nivel in self.datos:
@@ -53,6 +57,8 @@ class Controlador:
             
         
     def getInteres(self):
+        """Devuelve el interes del ultimo prestamo procesado, en caso de concesion
+        @return Interes del prestamo"""
         for i in range(0, len(self.datos), 1):
             if self.resultados[i]:
                 if self.campos["Interes variable"]==1:
@@ -60,7 +66,11 @@ class Controlador:
                 else:
                     return self.datos[i]["interes_fijo"];
     def getMensualidad(self):
+        """Devuelve la mensualidad que habria que pagar por el ultimo prestamo procesado
+        @return Mensualidad del prestamo"""
         return self.mensualidad;
     
     def getMotivo(self):
+        """Devuelve el motivo de la denegacion de un prestamo
+        @return Motivo de la denegacion del prestamo"""
         return self.motivo;

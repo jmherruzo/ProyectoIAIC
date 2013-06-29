@@ -1,4 +1,6 @@
 '''
+Datos referentes al sistema de concesion de prestamos. Estaria englobado en el subsistema de Modelo de la aplicacion
+
 Created on 29/06/2013
 
 @author: Fernando Cobo Aguilera
